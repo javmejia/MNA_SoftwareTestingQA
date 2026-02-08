@@ -38,7 +38,6 @@ Each project includes comprehensive test case analysis comparing expected result
 **File:** `A01100896_A4.2/P1_Compute_Statistics/results/Analisis_de_Resultados.txt`
 
 **Key Findings:**
-- COUNT, MEAN, MEDIAN, MODE, SD: All correct
 - **Variance variance:** Program uses population variance (divides by N), expected results use sample variance (divides by N-1)
 - **Mode handling:** TC1 correctly identifies two modes (170, 393) as "170,393" - expected results only show 393
 - **Data validation:** Program correctly discards invalid inputs (TC5: 4 invalid values; TC7: 2 invalid values)
@@ -47,7 +46,6 @@ Each project includes comprehensive test case analysis comparing expected result
 **File:** `A01100896_A4.2/P2_Converter/results/Analisis_de_Resultados.txt`
 
 **Key Findings:**
-- TC2, TC3, TC4: Binary and hexadecimal conversions are 100% accurate
 - **TC1 note:** Expected results contain errors in the reference file (calculation based on wrong input values)
 - Negative numbers: Correctly handled using two's complement binary representation
 - Invalid handling: Non-integer inputs properly reported as #VALUE!
@@ -56,7 +54,6 @@ Each project includes comprehensive test case analysis comparing expected result
 **File:** `A01100896_A4.2/P3_Count_Words/results/Analisis_de_Resultados.txt`
 
 **Key Findings:**
-- **100% Accuracy:** All test cases (TC1-TC5) match expected results perfectly
 - **Word validation:** Only alphabetic characters (A-Z, a-z) are counted as valid words
 - **Error handling:** Invalid tokens with numbers or special characters are filtered and reported
 - **Consistency:** Grand Total correctly calculated across all test cases
