@@ -1,0 +1,16 @@
+ANALISIS DE RESULTADOS (Expected vs Actual)
+
+Nota importante TC1
+El archivo "A4.2.P2.Results.txt" contiene un error en el TC1: los resultados estan calculados con base en el segundo valor de cada renglon, y ese valor no coincide con el archivo de entrada TC1.txt. Por esta razon, en TC1 todos los valores quedan incorrectos frente al esperado.
+
+TC1
+- BIN y HEX: no coinciden debido al error descrito en el archivo de resultados esperado.
+
+TC2
+- BIN y HEX: coinciden.
+
+TC3
+- BIN y HEX: coinciden (incluye negativos en complemento a dos).
+
+TC4
+- BIN y HEX: coinciden, incluyendo los valores invalidos como #VALUE!.

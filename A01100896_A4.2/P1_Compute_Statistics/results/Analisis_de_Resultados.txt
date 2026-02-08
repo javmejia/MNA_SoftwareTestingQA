@@ -1,0 +1,38 @@
+ANALISIS DE RESULTADOS (Expected vs Actual)
+
+TC1
+- COUNT, MEAN, MEDIAN, SD: coinciden.
+- MODE: no coincide. Hay empate de moda (170 y 393) y el programa reporta ambos como "170,393", mientras el esperado solo muestra 393.
+- VARIANCE: no coincide. El esperado parece usar varianza muestral (divide entre N-1). El programa usa varianza poblacional (divide entre N).
+
+TC2
+- COUNT, MEAN, MEDIAN, MODE, SD: coinciden.
+- VARIANCE: no coincide por uso de N-1 en el esperado vs N en el programa.
+
+TC3
+- COUNT, MEAN, MEDIAN, MODE, SD: coinciden.
+- VARIANCE: no coincide por uso de N-1 en el esperado vs N en el programa.
+
+TC4
+- COUNT, MEAN, MEDIAN, MODE, SD: coinciden.
+- VARIANCE: no coincide por uso de N-1 en el esperado vs N en el programa.
+
+TC5
+- MEAN, MEDIAN, SD: coinciden.
+- COUNT: no coincide. En TC5 hay 4 valores invalidos (ABA, 23,45, 11;54, ll) que el programa descarta; por eso baja de 311 a 307.
+- MODE: no coincide. Hay varias modas con la misma frecuencia; el programa reporta todas en una lista separada por comas.
+- VARIANCE: no coincide por dos razones: datos invalidos omitidos y el esperado usa N-1.
+
+TC6
+- COUNT, MEAN, MEDIAN, MODE, SD: coinciden.
+- VARIANCE: no coincide por uso de N-1 en el esperado vs N en el programa.
+
+TC7
+- MEAN, MEDIAN, MODE, SD: coinciden.
+- COUNT: no coincide. En TC7 hay 2 valores invalidos (ABBA, ERROR) que el programa descarta; por eso baja de 12769 a 12767.
+- VARIANCE: no coincide por datos invalidos omitidos y por uso de N-1 en el esperado.
+
+Resumen
+- El programa calcula varianza y desviacion estandar poblacional (divide entre N).
+- El esperado parece usar varianza muestral (divide entre N-1), por eso las diferencias en VARIANCE.
+- Las diferencias en COUNT y MODE se explican por datos invalidos y empates en la moda.

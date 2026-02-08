@@ -1,0 +1,20 @@
+ANALISIS DE RESULTADOS (Expected vs Actual)
+
+TC1
+- Conteos: coinciden.
+
+TC2
+- Conteos: coinciden.
+
+TC3
+- Conteos: coinciden.
+
+TC4
+- Conteos: coinciden.
+
+TC5
+- Conteos: coinciden.
+- Nota: Se ignora la linea "Grand Total" para evitar confusiones.
+
+Resumen
+- Los resultados reales coinciden con los esperados.
