@@ -61,19 +61,4 @@ Each project includes comprehensive test case analysis comparing expected result
 - **Error handling:** Invalid tokens with numbers or special characters are filtered and reported
 - **Consistency:** Grand Total correctly calculated across all test cases
 
-### P1: Compute Statistics Analysis
-**File:** `A01100896_A4.2/P1_Compute_Statistics/results/Analisis_de_Resultados.txt`
-
-Statistical calculations verified across 7 test cases. Analysis covers accuracy of mean, median, mode, standard deviation, and variance calculations. Results show 100% accuracy with proper input validation and error handling.
-
-### P2: Number Converter Analysis
-**File:** `A01100896_A4.2/P2_Converter/results/Analisis_de_Resultados.txt`
-
-Number conversion verified across 4 test cases. Analysis evaluates binary and hexadecimal conversions for decimal integers. Results demonstrate correct two's complement handling for negative numbers and accurate digit mapping.
-
-### P3: Word Counter Analysis
-**File:** `A01100896_A4.2/P3_Count_Words/results/Analisis_de_Resultados.txt`
-
-Word frequency analysis verified across 5 test cases. Analysis examines word extraction, validation, counting, and sorting accuracy. Results confirm proper handling of alphabetic validation and consistent frequency reporting.
-
 ---
