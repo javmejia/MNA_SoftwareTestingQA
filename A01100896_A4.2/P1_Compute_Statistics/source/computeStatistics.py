@@ -15,7 +15,7 @@ def parse_numbers(file_path: str) -> List[float]:
     with open(file_path, "r", encoding="utf-8") as file_handle:
         for line_no, raw_line in enumerate(file_handle, start=1):
             text = raw_line.strip()
-            if text == "":
+            if not text:
                 print(f"Line {line_no}: empty line skipped")
                 continue
             try:

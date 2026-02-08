@@ -15,7 +15,7 @@ def parse_numbers(file_path: str) -> List[Tuple[str, Optional[int]]]:
     with open(file_path, "r", encoding="utf-8") as file_handle:
         for line_no, raw_line in enumerate(file_handle, start=1):
             text = raw_line.strip()
-            if text == "":
+            if not text:
                 print(f"Line {line_no}: empty line skipped")
                 continue
             try:
@@ -30,7 +30,7 @@ def parse_numbers(file_path: str) -> List[Tuple[str, Optional[int]]]:
 
 def to_binary_positive(value: int) -> str:
     """Convert a non-negative integer to binary using basic division."""
-    if value == 0:
+    if not value:
         return "0"
     digits: List[str] = []
     number = value
@@ -42,7 +42,7 @@ def to_binary_positive(value: int) -> str:
 
 def to_hex_positive(value: int) -> str:
     """Convert a non-negative integer to hexadecimal using basic division."""
-    if value == 0:
+    if not value:
         return "0"
     digits: List[str] = []
     number = value

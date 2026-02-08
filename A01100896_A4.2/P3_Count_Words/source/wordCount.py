@@ -12,7 +12,7 @@ from typing import Dict, List, Tuple
 
 def is_alpha_word(token: str) -> bool:
     """Return True when the token contains only alphabetic characters."""
-    if token == "":
+    if not token:
         return False
     for ch in token:
         if not ("a" <= ch <= "z" or "A" <= ch <= "Z"):
@@ -26,7 +26,7 @@ def parse_words(file_path: str) -> List[str]:
     with open(file_path, "r", encoding="utf-8") as file_handle:
         for line_no, raw_line in enumerate(file_handle, start=1):
             line = raw_line.strip()
-            if line == "":
+            if not line:
                 print(f"Line {line_no}: empty line skipped")
                 continue
             for token in line.split():
