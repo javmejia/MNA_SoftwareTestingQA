@@ -103,13 +103,6 @@ def compute_total_sales(
             invalid_count += 1
             continue
 
-        if quantity < 0:
-            message = f"Sale item {index}: negative quantity '{quantity}' for '{product}'"
-            invalid_entries.append(message)
-            print(f"Error: {message}")
-            invalid_count += 1
-            continue
-
         clean_product = product.strip()
         if clean_product not in prices:
             message = f"Sale item {index}: product not found in catalogue '{clean_product}'"

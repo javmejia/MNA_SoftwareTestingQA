@@ -1,7 +1,5 @@
 # P1 Compute Statistics
 
-Compute descriptive statistics for each test case in `tests/`.
-
 ## Program Description
 
 This program reads a list of numeric values from a text file and calculates key statistical measures:

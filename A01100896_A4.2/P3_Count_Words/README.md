@@ -1,7 +1,5 @@
 # P3 Count Words
 
-Count distinct words and their frequency for each test case in `tests/`.
-
 ## Program Description
 
 This program reads text from a file and analyzes word patterns by:

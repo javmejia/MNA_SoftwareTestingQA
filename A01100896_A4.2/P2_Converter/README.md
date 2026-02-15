@@ -1,7 +1,5 @@
 # P2 Converter
 
-Convert decimal numbers to binary and hexadecimal for each test case in `tests/`.
-
 ## Program Description
 
 This program reads decimal integer values from a text file and converts each number to two alternative number systems:
