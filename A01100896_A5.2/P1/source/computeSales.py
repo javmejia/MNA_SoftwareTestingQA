@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compute total sales cost from a price catalogue and sales record JSON files."""
+"""Compute total sales cost from catalogue and sales record JSON files."""
 # pylint: disable=invalid-name
 
 from __future__ import annotations
@@ -24,7 +24,7 @@ def read_json_file(file_path: str) -> Optional[object]:
 
 
 def load_price_catalogue(file_path: str) -> Tuple[Dict[str, float], List[str]]:
-    """Load catalogue as product->price and collect invalid catalogue entries."""
+    """Load catalogue as product->price and collect invalid entries."""
     content = read_json_file(file_path)
     prices: Dict[str, float] = {}
     invalid_entries: List[str] = []
@@ -35,7 +35,11 @@ def load_price_catalogue(file_path: str) -> Tuple[Dict[str, float], List[str]]:
 
     for index, entry in enumerate(content, start=1):
         if not isinstance(entry, dict):
-            message = f"Catalogue item {index}: expected object, got {type(entry).__name__}"
+            object_name = type(entry).__name__
+            message = (
+                f"Catalogue item {index}: expected object, got "
+                f"{object_name}"
+            )
             invalid_entries.append(message)
             print(f"Error: {message}")
             continue
@@ -49,15 +53,25 @@ def load_price_catalogue(file_path: str) -> Tuple[Dict[str, float], List[str]]:
             print(f"Error: {message}")
             continue
 
-        if not isinstance(price, (int, float)) or isinstance(price, bool) or price < 0:
-            message = f"Catalogue item {index}: invalid price '{price}' for '{title}'"
+        if (
+            not isinstance(price, (int, float))
+            or isinstance(price, bool)
+            or price < 0
+        ):
+            message = (
+                f"Catalogue item {index}: invalid price "
+                f"'{price}' for '{title}'"
+            )
             invalid_entries.append(message)
             print(f"Error: {message}")
             continue
 
         clean_title = title.strip()
         if clean_title in prices:
-            message = f"Catalogue item {index}: duplicate title '{clean_title}', last value kept"
+            message = (
+                f"Catalogue item {index}: duplicate title "
+                f"'{clean_title}', last value kept"
+            )
             invalid_entries.append(message)
             print(f"Error: {message}")
         prices[clean_title] = float(price)
@@ -80,7 +94,11 @@ def compute_total_sales(
 
     for index, entry in enumerate(content, start=1):
         if not isinstance(entry, dict):
-            message = f"Sale item {index}: expected object, got {type(entry).__name__}"
+            object_name = type(entry).__name__
+            message = (
+                f"Sale item {index}: expected object, got "
+                f"{object_name}"
+            )
             invalid_entries.append(message)
             print(f"Error: {message}")
             invalid_count += 1
@@ -96,8 +114,14 @@ def compute_total_sales(
             invalid_count += 1
             continue
 
-        if not isinstance(quantity, (int, float)) or isinstance(quantity, bool):
-            message = f"Sale item {index}: invalid quantity '{quantity}' for '{product}'"
+        if (
+            not isinstance(quantity, (int, float))
+            or isinstance(quantity, bool)
+        ):
+            message = (
+                f"Sale item {index}: invalid quantity "
+                f"'{quantity}' for '{product}'"
+            )
             invalid_entries.append(message)
             print(f"Error: {message}")
             invalid_count += 1
@@ -105,7 +129,10 @@ def compute_total_sales(
 
         clean_product = product.strip()
         if clean_product not in prices:
-            message = f"Sale item {index}: product not found in catalogue '{clean_product}'"
+            message = (
+                f"Sale item {index}: product not found in catalogue "
+                f"'{clean_product}'"
+            )
             invalid_entries.append(message)
             print(f"Error: {message}")
             invalid_count += 1
@@ -118,7 +145,7 @@ def compute_total_sales(
 
 
 def get_test_case_label(file_path: str) -> str:
-    """Infer test case label from sales file name, defaulting to the file stem."""
+    """Infer test case label from sales file name."""
     base_name = os.path.basename(file_path)
     parts = base_name.split(".")
     if parts and parts[0]:
@@ -145,7 +172,10 @@ def load_expected_costs(file_path: str) -> Dict[str, float]:
                 try:
                     expected_costs[label] = float(value_text)
                 except ValueError:
-                    print(f"Error: invalid expected value '{value_text}' for '{label}'")
+                    print(
+                        f"Error: invalid expected value "
+                        f"'{value_text}' for '{label}'"
+                    )
     except FileNotFoundError:
         print(f"Error: expected results file not found '{file_path}'")
     return expected_costs
@@ -154,13 +184,15 @@ def load_expected_costs(file_path: str) -> Dict[str, float]:
 def render_sales_results(
     price_file: str,
     sales_file: str,
-    total_cost: float,
-    valid_count: int,
-    invalid_count: int,
+    summary: Dict[str, float],
     expected_cost: Optional[float],
     elapsed: float,
 ) -> str:
     """Build human-readable sales output."""
+    total_cost = summary["total_cost"]
+    valid_count = int(summary["valid_count"])
+    invalid_count = int(summary["invalid_count"])
+
     if expected_cost is None:
         expected_text = "#N/A"
         delta_text = "#N/A"
@@ -181,6 +213,38 @@ def render_sales_results(
         f"ELAPSED_SECONDS      : {elapsed:.6f}",
     ]
     return "\n".join(lines)
+
+
+def compute_sales_run(
+    price_file: str, sales_file: str
+) -> Tuple[Dict[str, float], List[str], float]:
+    """Execute catalogue+sales processing and return summary information."""
+    start = time.perf_counter()
+    prices, invalid_catalogue = load_price_catalogue(price_file)
+    (
+        total_cost,
+        valid_count,
+        invalid_count,
+        invalid_sales,
+    ) = compute_total_sales(sales_file, prices)
+    elapsed = time.perf_counter() - start
+    all_invalid = invalid_catalogue + invalid_sales
+    summary = {
+        "total_cost": total_cost,
+        "valid_count": float(valid_count),
+        "invalid_count": float(invalid_count + len(invalid_catalogue)),
+    }
+    return summary, all_invalid, elapsed
+
+
+def build_output_paths(results_dir: str, sales_file: str) -> Tuple[str, str]:
+    """Build output paths for sales and invalid reports."""
+    test_case = get_test_case_label(sales_file)
+    actual_file = os.path.join(
+        results_dir, f"{test_case}.ActualSalesResults.txt"
+    )
+    invalid_file = os.path.join(results_dir, f"{test_case}.InvalidData.txt")
+    return actual_file, invalid_file
 
 
 def render_invalid_results(messages: List[str], elapsed: float) -> str:
@@ -209,39 +273,33 @@ def write_file(file_path: str, content: str) -> None:
 def main(argv: List[str]) -> int:
     """Program entry point."""
     if len(argv) < 3:
-        print("Usage: python computeSales.py priceCatalogue.json salesRecord.json")
+        print(
+            "Usage: python computeSales.py "
+            "priceCatalogue.json salesRecord.json"
+        )
         return 1
 
     price_file = argv[1]
     sales_file = argv[2]
 
-    start = time.perf_counter()
-    prices, invalid_catalogue = load_price_catalogue(price_file)
-    total_cost, valid_count, invalid_count, invalid_sales = compute_total_sales(sales_file, prices)
-    elapsed = time.perf_counter() - start
-
-    all_invalid = invalid_catalogue + invalid_sales
-    invalid_output = render_invalid_results(all_invalid, elapsed)
+    summary, all_invalid, elapsed = compute_sales_run(price_file, sales_file)
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
     results_dir = os.path.normpath(os.path.join(script_dir, "..", "results"))
     os.makedirs(results_dir, exist_ok=True)
+
     expected_file = os.path.join(results_dir, "ExpectedResults.txt")
     expected_costs = load_expected_costs(expected_file)
-
-    test_case = get_test_case_label(sales_file)
-    expected_cost = expected_costs.get(test_case)
+    expected_cost = expected_costs.get(get_test_case_label(sales_file))
     output = render_sales_results(
         price_file,
         sales_file,
-        total_cost,
-        valid_count,
-        invalid_count + len(invalid_catalogue),
+        summary,
         expected_cost,
         elapsed,
     )
-    actual_file = os.path.join(results_dir, f"{test_case}.ActualSalesResults.txt")
-    invalid_file = os.path.join(results_dir, f"{test_case}.InvalidData.txt")
+    invalid_output = render_invalid_results(all_invalid, elapsed)
+    actual_file, invalid_file = build_output_paths(results_dir, sales_file)
 
     print(output)
     if all_invalid:
