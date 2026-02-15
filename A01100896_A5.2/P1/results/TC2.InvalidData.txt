@@ -1,0 +1,9 @@
+Invalid Data Report
+===================
+Invalid rows: 2
+
+Details:
+- Sale item 33: negative quantity '-35' for 'Fresh blueberries'
+- Sale item 45: negative quantity '-123' for 'Green smoothie'
+
+ELAPSED_SECONDS: 0.000311

@@ -1,0 +1,11 @@
+Invalid Data Report
+===================
+Invalid rows: 4
+
+Details:
+- Sale item 22: product not found in catalogue 'Elotes'
+- Sale item 33: negative quantity '-35' for 'Fresh blueberries'
+- Sale item 36: product not found in catalogue 'Frijoles'
+- Sale item 45: negative quantity '-123' for 'Green smoothie'
+
+ELAPSED_SECONDS: 0.000334

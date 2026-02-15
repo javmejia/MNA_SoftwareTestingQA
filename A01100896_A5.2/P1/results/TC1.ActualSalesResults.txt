@@ -1,0 +1,10 @@
+Sales Processing Results
+========================
+Price catalogue file : ../data/priceCatalogue.json
+Sales record file    : ../tests/TC1.salesRecord.json
+Valid sale rows      : 46
+Invalid sale rows    : 0
+TOTAL_COST           : 2481.86
+EXPECTED_COST        : 2481.86
+TOTAL_VS_EXPECTED    : 0.00
+ELAPSED_SECONDS      : 0.000246
