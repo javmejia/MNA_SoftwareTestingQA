@@ -1,8 +1,8 @@
 ************* Module computeSales
-A01100896_A5.2/P1/source/computeSales.py:154:0: R0913: Too many arguments (7/5) (too-many-arguments)
-A01100896_A5.2/P1/source/computeSales.py:154:0: R0917: Too many positional arguments (7/5) (too-many-positional-arguments)
-A01100896_A5.2/P1/source/computeSales.py:209:0: R0914: Too many local variables (22/15) (too-many-locals)
+A01100896_A5.2/P1/source/computeSales.py:184:0: R0913: Too many arguments (7/5) (too-many-arguments)
+A01100896_A5.2/P1/source/computeSales.py:184:0: R0917: Too many positional arguments (7/5) (too-many-positional-arguments)
+A01100896_A5.2/P1/source/computeSales.py:239:0: R0914: Too many local variables (22/15) (too-many-locals)
 
------------------------------------
-Your code has been rated at 9.82/10
+------------------------------------------------------------------
+Your code has been rated at 9.82/10 (previous run: 9.82/10, +0.00)
 
