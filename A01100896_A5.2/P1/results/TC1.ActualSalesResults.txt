@@ -7,4 +7,4 @@ Invalid sale rows    : 0
 TOTAL_COST           : 2481.86
 EXPECTED_COST        : 2481.86
 TOTAL_VS_EXPECTED    : 0.00
-ELAPSED_SECONDS      : 0.000246
+ELAPSED_SECONDS      : 0.000335
