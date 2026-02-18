@@ -1,4 +1,6 @@
 """Unit tests for domain models."""
+# pylint: disable=import-error,wrong-import-position
+# pylint: disable=missing-function-docstring,duplicate-code
 
 from __future__ import annotations
 
@@ -10,8 +12,8 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.exceptions import ValidationError
-from src.models import Customer, Hotel, Reservation
+from src.exceptions import ValidationError  # noqa: E402
+from src.models import Customer, Hotel, Reservation  # noqa: E402
 
 
 class TestHotelModel(unittest.TestCase):
