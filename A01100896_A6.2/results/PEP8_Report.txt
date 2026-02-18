@@ -1,0 +1,20 @@
+A01100896_A6.2/src/__init__.py:2:1: W391 blank line at end of file
+A01100896_A6.2/src/exceptions.py:18:1: W391 blank line at end of file
+A01100896_A6.2/src/repositories/__init__.py:8:1: W391 blank line at end of file
+A01100896_A6.2/src/repositories/base_json_repository.py:100:80: E501 line too long (83 > 79 characters)
+A01100896_A6.2/src/repositories/base_json_repository.py:104:1: W391 blank line at end of file
+A01100896_A6.2/src/repositories/customer_repository.py:16:80: E501 line too long (82 > 79 characters)
+A01100896_A6.2/src/repositories/customer_repository.py:21:80: E501 line too long (82 > 79 characters)
+A01100896_A6.2/src/repositories/customer_repository.py:31:80: E501 line too long (94 > 79 characters)
+A01100896_A6.2/src/repositories/hotel_repository.py:21:80: E501 line too long (81 > 79 characters)
+A01100896_A6.2/src/models/__init__.py:8:1: W391 blank line at end of file
+A01100896_A6.2/src/models/reservation.py:80:1: W391 blank line at end of file
+A01100896_A6.2/src/services/__init__.py:6:1: W391 blank line at end of file
+A01100896_A6.2/src/services/hotel_reservation_system.py:24:80: E501 line too long (83 > 79 characters)
+A01100896_A6.2/src/services/hotel_reservation_system.py:56:80: E501 line too long (81 > 79 characters)
+A01100896_A6.2/src/services/hotel_reservation_system.py:108:80: E501 line too long (81 > 79 characters)
+A01100896_A6.2/src/services/hotel_reservation_system.py:151:80: E501 line too long (85 > 79 characters)
+A01100896_A6.2/src/services/hotel_reservation_system.py:152:80: E501 line too long (81 > 79 characters)
+A01100896_A6.2/src/services/hotel_reservation_system.py:163:80: E501 line too long (80 > 79 characters)
+A01100896_A6.2/src/services/hotel_reservation_system.py:194:80: E501 line too long (81 > 79 characters)
+A01100896_A6.2/src/services/hotel_reservation_system.py:253:1: W391 blank line at end of file
