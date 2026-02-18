@@ -15,10 +15,13 @@ from ..repositories import (
 )
 
 
+# Required API signatures in this assignment include multiple parameters.
+# pylint: disable=too-many-arguments,too-many-positional-arguments
 class HotelReservationSystem:
     """Facade service implementing required operations."""
 
     def __init__(self, data_dir: str | Path = "data") -> None:
+        """Initialize repositories using the provided data directory."""
         data_path = Path(data_dir)
         self.hotel_repository = HotelRepository(data_path / "hotels.json")
         self.customer_repository = CustomerRepository(
@@ -39,6 +42,7 @@ class HotelReservationSystem:
         rating: float | None = None,
         active: bool = True,
     ) -> None:
+        """Create a new hotel record."""
         if available_rooms is None:
             available_rooms = total_rooms
         hotel = Hotel(
@@ -53,6 +57,7 @@ class HotelReservationSystem:
         self.hotel_repository.create_hotel(hotel)
 
     def delete_hotel(self, hotel_id: str) -> bool:
+        """Delete a hotel when there are no active reservations."""
         active_reservations = (
             self.reservation_repository.get_all_reservations()
         )
@@ -67,10 +72,12 @@ class HotelReservationSystem:
         return self.hotel_repository.delete_hotel(hotel_id)
 
     def display_hotel_info(self, hotel_id: str) -> dict | None:
+        """Return hotel information by ID."""
         hotel = self.hotel_repository.get_hotel(hotel_id)
         return None if hotel is None else hotel.to_dict()
 
     def modify_hotel_info(self, hotel_id: str, **changes: object) -> bool:
+        """Update hotel information by ID."""
         current = self.hotel_repository.get_hotel(hotel_id)
         if current is None:
             return False
@@ -99,6 +106,7 @@ class HotelReservationSystem:
         check_out: str,
         num_rooms: int = 1,
     ) -> dict:
+        """Reserve one or more rooms for a customer in a hotel."""
         reservation = self._build_reservation(
             customer_id=customer_id,
             hotel_id=hotel_id,
@@ -111,6 +119,7 @@ class HotelReservationSystem:
         return reservation.to_dict()
 
     def cancel_reservation(self, reservation_id: str) -> bool:
+        """Cancel an existing reservation and release hotel capacity."""
         reservation = self.reservation_repository.get_reservation(
             reservation_id
         )
@@ -119,16 +128,7 @@ class HotelReservationSystem:
         if reservation.status == "cancelled":
             return True
 
-        cancelled = Reservation(
-            reservation_id=reservation.reservation_id,
-            customer_id=reservation.customer_id,
-            hotel_id=reservation.hotel_id,
-            check_in=reservation.check_in,
-            check_out=reservation.check_out,
-            num_rooms=reservation.num_rooms,
-            status="cancelled",
-            created_at=reservation.created_at,
-        )
+        cancelled = reservation.as_cancelled()
         was_updated = self.reservation_repository.update_reservation(cancelled)
         if was_updated:
             self._update_hotel_capacity(
@@ -145,6 +145,7 @@ class HotelReservationSystem:
         phone: str,
         active: bool = True,
     ) -> None:
+        """Create a new customer record."""
         customer = Customer(
             customer_id=customer_id,
             full_name=full_name,
@@ -155,6 +156,7 @@ class HotelReservationSystem:
         self.customer_repository.create_customer(customer)
 
     def delete_customer(self, customer_id: str) -> bool:
+        """Delete a customer when there are no active reservations."""
         active_reservations = (
             self.reservation_repository.get_all_reservations()
         )
@@ -169,12 +171,14 @@ class HotelReservationSystem:
         return self.customer_repository.delete_customer(customer_id)
 
     def display_customer_info(self, customer_id: str) -> dict | None:
+        """Return customer information by ID."""
         customer = self.customer_repository.get_customer(customer_id)
         return None if customer is None else customer.to_dict()
 
     def modify_customer_info(
         self, customer_id: str, **changes: object
     ) -> bool:
+        """Update customer information by ID."""
         current = self.customer_repository.get_customer(customer_id)
         if current is None:
             return False
@@ -196,6 +200,7 @@ class HotelReservationSystem:
         check_out: str,
         num_rooms: int = 1,
     ) -> dict:
+        """Create a reservation between a customer and a hotel."""
         return self.reserve_room(
             customer_id=customer_id,
             hotel_id=hotel_id,
@@ -205,6 +210,7 @@ class HotelReservationSystem:
         )
 
     def display_reservation_info(self, reservation_id: str) -> dict | None:
+        """Return reservation information by ID."""
         reservation = self.reservation_repository.get_reservation(
             reservation_id
         )
@@ -218,6 +224,7 @@ class HotelReservationSystem:
         check_out: str,
         num_rooms: int,
     ) -> Reservation:
+        """Build a validated reservation instance."""
         customer = self.customer_repository.get_customer(customer_id)
         if customer is None:
             raise EntityNotFoundError(f"customer not found: {customer_id}")
@@ -244,6 +251,7 @@ class HotelReservationSystem:
         )
 
     def _update_hotel_capacity(self, hotel_id: str, room_delta: int) -> None:
+        """Adjust hotel available room count by delta."""
         hotel = self.hotel_repository.get_hotel(hotel_id)
         if hotel is None:
             raise EntityNotFoundError(f"hotel not found: {hotel_id}")
@@ -265,4 +273,5 @@ class HotelReservationSystem:
 
     @staticmethod
     def _next_reservation_id() -> str:
+        """Return a new reservation identifier."""
         return f"R-{uuid4().hex[:12].upper()}"

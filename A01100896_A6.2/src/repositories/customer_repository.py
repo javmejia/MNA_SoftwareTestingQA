@@ -13,11 +13,13 @@ class CustomerRepository:
     """Manages Customer persistence operations."""
 
     def __init__(self, file_path: str | Path) -> None:
+        """Initialize repository with the customer storage file path."""
         self._repo = BaseJsonRepository(
             file_path, Customer.from_dict, "customer"
         )
 
     def create_customer(self, customer: Customer) -> None:
+        """Create a customer if it does not already exist."""
         customers = self._repo.load_all()
         if any(
             existing.customer_id == customer.customer_id
@@ -30,6 +32,7 @@ class CustomerRepository:
         self._repo.save_all(customers, lambda item: item.to_dict())
 
     def delete_customer(self, customer_id: str) -> bool:
+        """Delete a customer by ID."""
         customers = self._repo.load_all()
         filtered = [
             customer
@@ -42,15 +45,18 @@ class CustomerRepository:
         return deleted
 
     def get_customer(self, customer_id: str) -> Customer | None:
+        """Return a customer by ID or None when not found."""
         for customer in self._repo.load_all():
             if customer.customer_id == customer_id:
                 return customer
         return None
 
     def get_all_customers(self) -> list[Customer]:
+        """Return all valid customers from storage."""
         return self._repo.load_all()
 
     def update_customer(self, customer: Customer) -> bool:
+        """Update an existing customer by ID."""
         customers = self._repo.load_all()
         updated = False
         for idx, current in enumerate(customers):

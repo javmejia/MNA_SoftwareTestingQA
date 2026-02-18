@@ -14,7 +14,7 @@ def _validate_date(date_text: str, field_name: str) -> None:
 
 
 @dataclass
-class Reservation:
+class Reservation:  # pylint: disable=too-many-instance-attributes
     """Represents a reservation."""
 
     reservation_id: str
@@ -77,3 +77,16 @@ class Reservation:
             raise ValidationError(f"missing field: {exc.args[0]}") from exc
         except (TypeError, ValueError) as exc:
             raise ValidationError(f"invalid reservation data: {exc}") from exc
+
+    def as_cancelled(self) -> "Reservation":
+        """Return a copy of this reservation with cancelled status."""
+        return Reservation(
+            reservation_id=self.reservation_id,
+            customer_id=self.customer_id,
+            hotel_id=self.hotel_id,
+            check_in=self.check_in,
+            check_out=self.check_out,
+            num_rooms=self.num_rooms,
+            status="cancelled",
+            created_at=self.created_at,
+        )
