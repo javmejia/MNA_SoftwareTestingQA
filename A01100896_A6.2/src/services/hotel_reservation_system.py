@@ -21,7 +21,9 @@ class HotelReservationSystem:
     def __init__(self, data_dir: str | Path = "data") -> None:
         data_path = Path(data_dir)
         self.hotel_repository = HotelRepository(data_path / "hotels.json")
-        self.customer_repository = CustomerRepository(data_path / "customers.json")
+        self.customer_repository = CustomerRepository(
+            data_path / "customers.json"
+        )
         self.reservation_repository = ReservationRepository(
             data_path / "reservations.json"
         )
@@ -51,9 +53,13 @@ class HotelReservationSystem:
         self.hotel_repository.create_hotel(hotel)
 
     def delete_hotel(self, hotel_id: str) -> bool:
+        active_reservations = (
+            self.reservation_repository.get_all_reservations()
+        )
         if any(
-            reservation.hotel_id == hotel_id and reservation.status == "active"
-            for reservation in self.reservation_repository.get_all_reservations()
+            reservation.hotel_id == hotel_id
+            and reservation.status == "active"
+            for reservation in active_reservations
         ):
             raise ValidationError(
                 "cannot delete hotel with active reservations"
@@ -105,7 +111,9 @@ class HotelReservationSystem:
         return reservation.to_dict()
 
     def cancel_reservation(self, reservation_id: str) -> bool:
-        reservation = self.reservation_repository.get_reservation(reservation_id)
+        reservation = self.reservation_repository.get_reservation(
+            reservation_id
+        )
         if reservation is None:
             return False
         if reservation.status == "cancelled":
@@ -147,9 +155,13 @@ class HotelReservationSystem:
         self.customer_repository.create_customer(customer)
 
     def delete_customer(self, customer_id: str) -> bool:
+        active_reservations = (
+            self.reservation_repository.get_all_reservations()
+        )
         if any(
-            reservation.customer_id == customer_id and reservation.status == "active"
-            for reservation in self.reservation_repository.get_all_reservations()
+            reservation.customer_id == customer_id
+            and reservation.status == "active"
+            for reservation in active_reservations
         ):
             raise ValidationError(
                 "cannot delete customer with active reservations"
@@ -160,7 +172,9 @@ class HotelReservationSystem:
         customer = self.customer_repository.get_customer(customer_id)
         return None if customer is None else customer.to_dict()
 
-    def modify_customer_info(self, customer_id: str, **changes: object) -> bool:
+    def modify_customer_info(
+        self, customer_id: str, **changes: object
+    ) -> bool:
         current = self.customer_repository.get_customer(customer_id)
         if current is None:
             return False
@@ -191,7 +205,9 @@ class HotelReservationSystem:
         )
 
     def display_reservation_info(self, reservation_id: str) -> dict | None:
-        reservation = self.reservation_repository.get_reservation(reservation_id)
+        reservation = self.reservation_repository.get_reservation(
+            reservation_id
+        )
         return None if reservation is None else reservation.to_dict()
 
     def _build_reservation(
@@ -250,4 +266,3 @@ class HotelReservationSystem:
     @staticmethod
     def _next_reservation_id() -> str:
         return f"R-{uuid4().hex[:12].upper()}"
-

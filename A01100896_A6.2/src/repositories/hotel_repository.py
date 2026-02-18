@@ -18,7 +18,9 @@ class HotelRepository:
     def create_hotel(self, hotel: Hotel) -> None:
         hotels = self._repo.load_all()
         if any(existing.hotel_id == hotel.hotel_id for existing in hotels):
-            raise DuplicateEntityError(f"hotel already exists: {hotel.hotel_id}")
+            raise DuplicateEntityError(
+                f"hotel already exists: {hotel.hotel_id}"
+            )
         hotels.append(hotel)
         self._repo.save_all(hotels, lambda item: item.to_dict())
 

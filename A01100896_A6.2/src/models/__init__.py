@@ -5,4 +5,3 @@ from .hotel import Hotel
 from .reservation import Reservation
 
 __all__ = ["Hotel", "Customer", "Reservation"]
-

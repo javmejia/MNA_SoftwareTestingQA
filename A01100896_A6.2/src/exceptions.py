@@ -15,4 +15,3 @@ class DuplicateEntityError(Exception):
 
 class PersistenceError(Exception):
     """Raised for persistent storage operation failures."""
-

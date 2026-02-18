@@ -77,4 +77,3 @@ class Reservation:
             raise ValidationError(f"missing field: {exc.args[0]}") from exc
         except (TypeError, ValueError) as exc:
             raise ValidationError(f"invalid reservation data: {exc}") from exc
-

@@ -13,12 +13,15 @@ class CustomerRepository:
     """Manages Customer persistence operations."""
 
     def __init__(self, file_path: str | Path) -> None:
-        self._repo = BaseJsonRepository(file_path, Customer.from_dict, "customer")
+        self._repo = BaseJsonRepository(
+            file_path, Customer.from_dict, "customer"
+        )
 
     def create_customer(self, customer: Customer) -> None:
         customers = self._repo.load_all()
         if any(
-            existing.customer_id == customer.customer_id for existing in customers
+            existing.customer_id == customer.customer_id
+            for existing in customers
         ):
             raise DuplicateEntityError(
                 f"customer already exists: {customer.customer_id}"
@@ -28,7 +31,11 @@ class CustomerRepository:
 
     def delete_customer(self, customer_id: str) -> bool:
         customers = self._repo.load_all()
-        filtered = [customer for customer in customers if customer.customer_id != customer_id]
+        filtered = [
+            customer
+            for customer in customers
+            if customer.customer_id != customer_id
+        ]
         deleted = len(filtered) != len(customers)
         if deleted:
             self._repo.save_all(filtered, lambda item: item.to_dict())

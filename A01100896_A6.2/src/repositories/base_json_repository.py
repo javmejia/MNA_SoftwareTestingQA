@@ -97,8 +97,9 @@ class BaseJsonRepository(Generic[T]):
                 )
         return entities
 
-    def save_all(self, entities: list[T], serializer: Callable[[T], dict]) -> None:
+    def save_all(
+        self, entities: list[T], serializer: Callable[[T], dict]
+    ) -> None:
         """Save all entities to disk."""
         data = [serializer(entity) for entity in entities]
         self._write_raw(data)
-
