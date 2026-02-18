@@ -1,0 +1,28 @@
+{
+  "create": [
+    {
+      "customer_id": "C102",
+      "full_name": "Invalid Email",
+      "email": "invalid-email",
+      "phone": "555-0102",
+      "active": true
+    },
+    {
+      "customer_id": "",
+      "full_name": "No Id",
+      "email": "noid@example.com",
+      "phone": "555-0103",
+      "active": true
+    }
+  ],
+  "display": ["C404"],
+  "modify": [
+    {
+      "customer_id": "C404",
+      "changes": {
+        "full_name": "Missing Customer"
+      }
+    }
+  ],
+  "delete": ["C404"]
+}

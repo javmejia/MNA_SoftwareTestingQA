@@ -1,2 +1,11 @@
-[]
-
+[
+  {
+    "hotel_id": "H100",
+    "name": "City Plaza Premium",
+    "location": "Monterrey",
+    "total_rooms": 20,
+    "available_rooms": 18,
+    "rating": 4.7,
+    "active": true
+  }
+]

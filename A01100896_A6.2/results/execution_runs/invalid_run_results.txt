@@ -1,0 +1,15 @@
+Scenario invalid started: 2026-02-17T21:18:19
+FAIL | EXPECTED=FAIL | MATCH=YES | Create Hotel  | ValidationError: hotel_id cannot be empty
+FAIL | EXPECTED=FAIL | MATCH=YES | Create Hotel H300 | ValidationError: available_rooms cannot exceed total_rooms
+PASS | EXPECTED=PASS | MATCH=YES | Display Hotel H404 | Hotel does not exist
+PASS | EXPECTED=PASS | MATCH=YES | Modify Hotel H404 | Hotel does not exist; nothing modified
+FAIL | EXPECTED=FAIL | MATCH=YES | Create Customer C102 | ValidationError: email format is invalid
+FAIL | EXPECTED=FAIL | MATCH=YES | Create Customer  | ValidationError: customer_id cannot be empty
+PASS | EXPECTED=PASS | MATCH=YES | Display Customer C404 | Customer does not exist
+PASS | EXPECTED=PASS | MATCH=YES | Modify Customer C404 | Customer does not exist; nothing modified
+FAIL | EXPECTED=FAIL | MATCH=YES | Create Reservation C404->H100 | EntityNotFoundError: customer not found: C404
+FAIL | EXPECTED=FAIL | MATCH=YES | Create Reservation C100->H100 | ValidationError: check_out must be later than check_in
+FAIL | EXPECTED=FAIL | MATCH=YES | Create Reservation C100->H100 | ValidationError: insufficient room availability
+FAIL | EXPECTED=FAIL | MATCH=YES | Cancel Reservation R-DOES-NOT-EXIST | Reservation does not exist; nothing cancelled
+PASS | EXPECTED=PASS | MATCH=YES | Delete Customer C404 | Customer does not exist; nothing deleted
+PASS | EXPECTED=PASS | MATCH=YES | Delete Hotel H404 | Hotel does not exist; nothing deleted

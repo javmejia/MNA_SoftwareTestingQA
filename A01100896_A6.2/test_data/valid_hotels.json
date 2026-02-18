@@ -1,0 +1,34 @@
+{
+  "create": [
+    {
+      "hotel_id": "H100",
+      "name": "City Plaza",
+      "location": "Monterrey",
+      "total_rooms": 20,
+      "available_rooms": 20,
+      "rating": 4.5,
+      "active": true
+    },
+    {
+      "hotel_id": "H200",
+      "name": "Airport Inn",
+      "location": "Monterrey",
+      "total_rooms": 8,
+      "available_rooms": 8,
+      "rating": 4.0,
+      "active": true
+    }
+  ],
+  "display": ["H100", "H200"],
+  "modify": [
+    {
+      "hotel_id": "H100",
+      "changes": {
+        "name": "City Plaza Premium",
+        "available_rooms": 18,
+        "rating": 4.7
+      }
+    }
+  ],
+  "delete": ["H200"]
+}

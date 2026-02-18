@@ -1,0 +1,49 @@
+Scenario valid started: 2026-02-17T21:18:19
+PASS | EXPECTED=PASS | MATCH=YES | Create Hotel H100 | Created successfully
+PASS | EXPECTED=PASS | MATCH=YES | Create Hotel H200 | Created successfully
+PASS | EXPECTED=PASS | MATCH=YES | Display Hotel H100 | result={'hotel_id': 'H100', 'name': 'City Plaza', 'location': 'Monterrey', 'total_rooms': 20, 'available_rooms': 20, 'rating': 4.5, 'active': True}
+PASS | EXPECTED=PASS | MATCH=YES | Display Hotel H200 | result={'hotel_id': 'H200', 'name': 'Airport Inn', 'location': 'Monterrey', 'total_rooms': 8, 'available_rooms': 8, 'rating': 4.0, 'active': True}
+PASS | EXPECTED=PASS | MATCH=YES | Modify Hotel H100 | Operation completed successfully
+PASS | EXPECTED=PASS | MATCH=YES | Create Customer C100 | Created successfully
+PASS | EXPECTED=PASS | MATCH=YES | Create Customer C101 | Created successfully
+PASS | EXPECTED=PASS | MATCH=YES | Display Customer C100 | result={'customer_id': 'C100', 'full_name': 'Ana Torres', 'email': 'ana.torres@example.com', 'phone': '555-0100', 'active': True}
+PASS | EXPECTED=PASS | MATCH=YES | Display Customer C101 | result={'customer_id': 'C101', 'full_name': 'Luis Gomez', 'email': 'luis.gomez@example.com', 'phone': '555-0101', 'active': True}
+PASS | EXPECTED=PASS | MATCH=YES | Modify Customer C100 | Operation completed successfully
+PASS | EXPECTED=PASS | MATCH=YES | Create Reservation C100->H100 | Reservation created with id=R-E9091741795D
+PASS | EXPECTED=PASS | MATCH=YES | Cancel Reservation R-E9091741795D | Operation completed successfully
+PASS | EXPECTED=PASS | MATCH=YES | Delete Customer C101 | Operation completed successfully
+PASS | EXPECTED=PASS | MATCH=YES | Delete Hotel H200 | Operation completed successfully
+
+Persistent data snapshot after run:
+- hotels.json: [
+  {
+    "hotel_id": "H100",
+    "name": "City Plaza Premium",
+    "location": "Monterrey",
+    "total_rooms": 20,
+    "available_rooms": 18,
+    "rating": 4.7,
+    "active": true
+  }
+]
+- customers.json: [
+  {
+    "customer_id": "C100",
+    "full_name": "Ana Torres Updated",
+    "email": "ana.torres@example.com",
+    "phone": "555-9999",
+    "active": true
+  }
+]
+- reservations.json: [
+  {
+    "reservation_id": "R-E9091741795D",
+    "customer_id": "C100",
+    "hotel_id": "H100",
+    "check_in": "2026-04-01",
+    "check_out": "2026-04-03",
+    "num_rooms": 2,
+    "status": "cancelled",
+    "created_at": "2026-02-18T02:18:19"
+  }
+]

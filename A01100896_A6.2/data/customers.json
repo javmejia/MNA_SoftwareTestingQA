@@ -1,2 +1,9 @@
-[]
-
+[
+  {
+    "customer_id": "C100",
+    "full_name": "Ana Torres Updated",
+    "email": "ana.torres@example.com",
+    "phone": "555-9999",
+    "active": true
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "create": [
+    {
+      "customer_id": "C404",
+      "hotel_id": "H100",
+      "check_in": "2026-04-05",
+      "check_out": "2026-04-06",
+      "num_rooms": 1
+    },
+    {
+      "customer_id": "C100",
+      "hotel_id": "H100",
+      "check_in": "2026-04-10",
+      "check_out": "2026-04-09",
+      "num_rooms": 1
+    },
+    {
+      "customer_id": "C100",
+      "hotel_id": "H100",
+      "check_in": "2026-04-15",
+      "check_out": "2026-04-20",
+      "num_rooms": 100
+    }
+  ],
+  "cancel": [
+    "R-DOES-NOT-EXIST"
+  ]
+}

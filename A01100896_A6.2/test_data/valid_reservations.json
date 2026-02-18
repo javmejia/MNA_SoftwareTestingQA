@@ -1,0 +1,14 @@
+{
+  "create": [
+    {
+      "customer_id": "C100",
+      "hotel_id": "H100",
+      "check_in": "2026-04-01",
+      "check_out": "2026-04-03",
+      "num_rooms": 2
+    }
+  ],
+  "cancel": [
+    "<created_first>"
+  ]
+}

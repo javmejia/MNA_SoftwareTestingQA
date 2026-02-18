@@ -1,0 +1,29 @@
+{
+  "create": [
+    {
+      "customer_id": "C100",
+      "full_name": "Ana Torres",
+      "email": "ana.torres@example.com",
+      "phone": "555-0100",
+      "active": true
+    },
+    {
+      "customer_id": "C101",
+      "full_name": "Luis Gomez",
+      "email": "luis.gomez@example.com",
+      "phone": "555-0101",
+      "active": true
+    }
+  ],
+  "display": ["C100", "C101"],
+  "modify": [
+    {
+      "customer_id": "C100",
+      "changes": {
+        "phone": "555-9999",
+        "full_name": "Ana Torres Updated"
+      }
+    }
+  ],
+  "delete": ["C101"]
+}
