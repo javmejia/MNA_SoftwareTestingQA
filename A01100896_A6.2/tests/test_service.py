@@ -14,7 +14,9 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.exceptions import EntityNotFoundError, ValidationError  # noqa: E402
-from src.services.hotel_reservation_system import HotelReservationSystem  # noqa: E402
+from src.services.hotel_reservation_system import (  # noqa: E402
+    HotelReservationSystem,
+)
 
 
 class TestHotelReservationSystem(unittest.TestCase):

@@ -1,4 +1,1 @@
-A01100896_A6.2/tests/test_repositories.py:22:80: E501 line too long (82 > 79 characters)
-A01100896_A6.2/tests/test_repositories.py:23:80: E501 line too long (81 > 79 characters)
-A01100896_A6.2/tests/test_repositories.py:25:80: E501 line too long (87 > 79 characters)
-A01100896_A6.2/tests/test_service.py:17:80: E501 line too long (86 > 79 characters)
+No flake8 issues found.

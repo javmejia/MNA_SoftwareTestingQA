@@ -19,10 +19,16 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from src.exceptions import DuplicateEntityError, PersistenceError  # noqa: E402
 from src.models import Customer, Hotel, Reservation  # noqa: E402
-from src.repositories.base_json_repository import BaseJsonRepository  # noqa: E402
-from src.repositories.customer_repository import CustomerRepository  # noqa: E402
+from src.repositories.base_json_repository import (  # noqa: E402
+    BaseJsonRepository,
+)
+from src.repositories.customer_repository import (  # noqa: E402
+    CustomerRepository,
+)
 from src.repositories.hotel_repository import HotelRepository  # noqa: E402
-from src.repositories.reservation_repository import ReservationRepository  # noqa: E402
+from src.repositories.reservation_repository import (  # noqa: E402
+    ReservationRepository,
+)
 
 
 class TestBaseJsonRepository(unittest.TestCase):
