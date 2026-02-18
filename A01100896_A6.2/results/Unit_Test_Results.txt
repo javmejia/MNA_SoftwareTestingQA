@@ -1,0 +1,36 @@
+test_customer_from_dict_missing_field (test_models.TestCustomerModel.test_customer_from_dict_missing_field) ... ok
+test_customer_invalid_values_raise (test_models.TestCustomerModel.test_customer_invalid_values_raise) ... ok
+test_customer_to_from_dict (test_models.TestCustomerModel.test_customer_to_from_dict) ... ok
+test_hotel_from_dict_missing_field (test_models.TestHotelModel.test_hotel_from_dict_missing_field) ... ok
+test_hotel_invalid_values_raise (test_models.TestHotelModel.test_hotel_invalid_values_raise) ... ok
+test_hotel_to_from_dict (test_models.TestHotelModel.test_hotel_to_from_dict) ... ok
+test_reservation_as_cancelled (test_models.TestReservationModel.test_reservation_as_cancelled) ... ok
+test_reservation_from_dict_missing_field (test_models.TestReservationModel.test_reservation_from_dict_missing_field) ... ok
+test_reservation_invalid_values_raise (test_models.TestReservationModel.test_reservation_invalid_values_raise) ... ok
+test_reservation_to_from_dict (test_models.TestReservationModel.test_reservation_to_from_dict) ... ok
+test_load_all_invalid_json_prints_error_and_returns_empty (test_repositories.TestBaseJsonRepository.test_load_all_invalid_json_prints_error_and_returns_empty) ... ok
+test_load_all_missing_file_prints_warning_and_returns_empty (test_repositories.TestBaseJsonRepository.test_load_all_missing_file_prints_warning_and_returns_empty) ... ok
+test_load_all_non_array_root_prints_error_and_returns_empty (test_repositories.TestBaseJsonRepository.test_load_all_non_array_root_prints_error_and_returns_empty) ... ok
+test_load_all_skips_invalid_records_and_continues (test_repositories.TestBaseJsonRepository.test_load_all_skips_invalid_records_and_continues) ... ok
+test_save_all_raises_persistence_error_on_os_failure (test_repositories.TestBaseJsonRepository.test_save_all_raises_persistence_error_on_os_failure) ... ok
+test_customer_repository_crud (test_repositories.TestEntityRepositories.test_customer_repository_crud) ... ok
+test_customer_repository_duplicate_raises (test_repositories.TestEntityRepositories.test_customer_repository_duplicate_raises) ... ok
+test_hotel_repository_crud (test_repositories.TestEntityRepositories.test_hotel_repository_crud) ... ok
+test_hotel_repository_duplicate_raises (test_repositories.TestEntityRepositories.test_hotel_repository_duplicate_raises) ... ok
+test_reservation_repository_crud_and_cancel_paths (test_repositories.TestEntityRepositories.test_reservation_repository_crud_and_cancel_paths) ... ok
+test_reservation_repository_duplicate_raises (test_repositories.TestEntityRepositories.test_reservation_repository_duplicate_raises) ... ok
+test_create_hotel_defaults_available_rooms_to_total (test_service.TestHotelReservationSystem.test_create_hotel_defaults_available_rooms_to_total) ... ok
+test_delete_hotel_and_customer_blocked_by_active_reservation (test_service.TestHotelReservationSystem.test_delete_hotel_and_customer_blocked_by_active_reservation) ... /Users/javmejia/Documents/MNA_SoftwareTestingQA/A01100896_A6.2/src/services/hotel_reservation_system.py:250: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  created_at=datetime.utcnow().isoformat(timespec="seconds"),
+ok
+test_display_operations_return_none_for_missing_entities (test_service.TestHotelReservationSystem.test_display_operations_return_none_for_missing_entities) ... ok
+test_modify_operations_return_false_for_missing_entities (test_service.TestHotelReservationSystem.test_modify_operations_return_false_for_missing_entities) ... ok
+test_modify_operations_update_existing_entities (test_service.TestHotelReservationSystem.test_modify_operations_update_existing_entities) ... ok
+test_reservation_lifecycle_and_capacity_changes (test_service.TestHotelReservationSystem.test_reservation_lifecycle_and_capacity_changes) ... ok
+test_reservation_rejects_inactive_or_unavailable_entities (test_service.TestHotelReservationSystem.test_reservation_rejects_inactive_or_unavailable_entities) ... ok
+test_reservation_requires_existing_customer_and_hotel (test_service.TestHotelReservationSystem.test_reservation_requires_existing_customer_and_hotel) ... ok
+
+----------------------------------------------------------------------
+Ran 29 tests in 0.036s
+
+OK

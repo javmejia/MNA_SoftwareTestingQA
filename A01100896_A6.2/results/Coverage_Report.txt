@@ -1,0 +1,17 @@
+Name                                                        Stmts   Miss  Cover
+-------------------------------------------------------------------------------
+A01100896_A6.2/src/__init__.py                                  0      0   100%
+A01100896_A6.2/src/exceptions.py                                4      0   100%
+A01100896_A6.2/src/models/__init__.py                           4      0   100%
+A01100896_A6.2/src/models/customer.py                          31      5    84%
+A01100896_A6.2/src/models/hotel.py                             35      4    89%
+A01100896_A6.2/src/models/reservation.py                       39      6    85%
+A01100896_A6.2/src/repositories/__init__.py                     4      0   100%
+A01100896_A6.2/src/repositories/base_json_repository.py        56      2    96%
+A01100896_A6.2/src/repositories/customer_repository.py         39      1    97%
+A01100896_A6.2/src/repositories/hotel_repository.py            39      1    97%
+A01100896_A6.2/src/repositories/reservation_repository.py      45      0   100%
+A01100896_A6.2/src/services/__init__.py                         2      0   100%
+A01100896_A6.2/src/services/hotel_reservation_system.py        96      2    98%
+-------------------------------------------------------------------------------
+TOTAL                                                         394     21    95%
